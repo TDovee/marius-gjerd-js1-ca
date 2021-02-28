@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+</head>
+<nav>
+	<a href="index.html">Home</a>
+	<a href="contact.html">contact</a>
+</nav>
+<body>
+	<div>
+		<div id="myIndexDiv"></div>
+	</div>
+	<script>
+
+url = ('https://jsonplaceholder.typicode.com/users')
+outindex = document.querySelector('#myIndexDiv')
+
+
+ListData = (list) => {
+	outindex.innerHTML = "";
+
+
+	console.log(list)
+
+
+
+	for(let stuff of list){
+		if (stuff.name === "Patricia Lebsack"){
+			break;
+		}
+		let newList = `
+		<ul>
+		  <li><a href="details.html?id=${stuff.id}">${stuff.name}</a></li>
+		</ul>`
+		myIndexDiv.innerHTML += newList;
+	}
+}
+
+
+
+// CALL
+fetch(url)
+.then(response => response.json())
+.then(data => ListData(data))
+.catch(error => {
+	console.error(error.message);
+	outindex.innerHTML = '<div class="error">something went wrong</div>'
+})
+
+	</script>
+</body>
+</html>

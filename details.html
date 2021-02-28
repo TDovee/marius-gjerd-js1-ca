@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>details</title>
+</head>
+<body>
+	<nav>
+	<a href="index.html">Home</a>
+	<a href="contact.html">contact</a>
+</nav>
+	<p id="out">Loading..</p>
+	<div>
+		<div id="typicode"></div>
+	</div>
+	<script>
+
+const queryString = document.location.search;
+const params = new URLSearchParams(queryString);
+const id = params.get("id");
+const error = document.querySelector("p#out");
+const out = document.querySelector("div#typicode")
+const url = (`https://jsonplaceholder.typicode.com/users?id=`) + id;
+
+
+
+fetch(url)
+.then(response => response.json())
+.then(data => ListData(data))
+.catch(error => {
+	console.error(error.message);
+	out.innerHTML = '<div class="error">something went wrong</div>';
+})
+
+ListData = (list) => {
+	out.innherHTML = "";
+
+    console.log(list); 
+
+
+    for(let item of list){
+
+    	let newDiv = `
+        <h1>${item.name}</h1>
+        <p>${item.username}</p>
+        <p>${item.email}</p>
+        <p>${item.phone}</p>
+        <p>${item.website}</p>
+    `
+    out.innerHTML += newDiv;
+    error.innerHTML = "";
+    }
+}
+	</script>
+</body>
+</html>

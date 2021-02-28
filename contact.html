@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>contact</title>
+	
+</head>
+<body>
+
+
+<nav>
+	<a href="index.html">Home</a>
+	<a href="contact.html">contact</a>
+</nav>
+
+
+<div class="container">
+
+  <h2>Registration</h2>
+  <form action="" name="registration">
+    <label for="name">Navn</label>
+    <input type="text" name="name" id="name" placeholder="Ditt navn" />
+
+    <label for="subjekt">Subjekt</label>
+    <input type="text" name="subjekt" id="subjekt" placeholder="subjekt" />
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="Din e-mail" />
+
+    <label for="adresse">Adresse</label>
+    <input type="adresse" name="adress" id="adresse" placeholder="Adresse" />
+
+    <button type="submit">Register</button>
+
+  </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+  $("form[name='registration']").validate({
+    rules: {
+      name: "required",
+      subjekt: "required",
+      email: {
+        required: true,
+        email: true
+      },
+      adress: {
+        required: true,
+        minlength: 25
+      }
+    },
+    messages: {
+      name: "Please enter your name",
+      subjekt: "Please enter your subjekt",
+
+      adress: {
+      required: "Please provide adress ",
+      minlength: "Your  must be at least 25 characters long"
+      },
+
+      email: "Please enter a valid email address"
+    },
+
+    submitHandler: function(form) {
+      form.submit();
+    }
+
+  });
+});
+</script>
+<style type="text/css">
+
+label,
+input {
+  display: block;
+}
+
+input{
+ margin-bottom:15px;
+}
+
+label.error {
+  color: red;
+  margin-bottom:15px;
+}
+
+</style>
+</body>
+</html>
